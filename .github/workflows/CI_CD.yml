@@ -31,8 +31,9 @@ jobs:
         run: echo "Testing the container"
 
   deploy:
+    needs: [build,test]
     runs-on: ubuntu-latest
-    needs: test
+   
     steps:
       - name: Deploy the app
         run: echo "Docker compose deploy"
