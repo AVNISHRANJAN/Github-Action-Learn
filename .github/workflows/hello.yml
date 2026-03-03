@@ -3,7 +3,12 @@ name: Hello Workflow
 
 #run on an automaic trigger on whenever change is pushed on branch
 on:
-  discussion_comment:
+  push:
+    branches: [main]
+
+    paths: 
+      -'**.html'
+  
     
     
 #these are jobs inside the workflow
