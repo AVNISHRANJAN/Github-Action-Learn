@@ -1,11 +1,15 @@
+#this is workflow name
 name: Hello Workflow
 
+#run on an automaic trigger on whenever change is pushed on branch
 on:
   push:
     branches: [main]
-
+    
+#these are jobs inside the workflow
 jobs:
   greet:
+  #this is guithub ruunner each joob run on a runner
     runs-on: ubuntu-latest
 
     steps:
