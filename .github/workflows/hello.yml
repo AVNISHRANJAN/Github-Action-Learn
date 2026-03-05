@@ -1,0 +1,34 @@
+#this is workflow name
+name: Hello Workflow
+
+#run on an automaic trigger on whenever change is pushed on branch
+on:
+  push:
+    branches: [main]
+
+    paths: 
+      -'**.html'
+  
+    
+    
+#these are jobs inside the workflow
+jobs:
+  greet:
+  #this is guithub ruunner each joob run on a runner
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Say hello to users
+        run: echo "Hello Dosto"
+
+      - name: Say hello to username
+        run: echo "Hello $USER"
+
+  details:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show versions of Docker and Python
+        run: |
+          docker --version
+          python3 --version
