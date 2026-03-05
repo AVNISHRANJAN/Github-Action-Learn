@@ -42,8 +42,8 @@ jobs:
         with:
           path: "."  # folder containing your website files
 
-    # Step 4: Deploy uploaded artifact to GitHub Pages
-    # Publishes your site so it becomes accessible online
+      # Step 4: Deploy uploaded artifact to GitHub Pages
+      # Publishes your site so it becomes accessible online
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
