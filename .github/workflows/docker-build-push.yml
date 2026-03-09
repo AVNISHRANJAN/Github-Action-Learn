@@ -1,33 +1,29 @@
-name: Docker Build and Push
+name: Docker Build & Push
 
-on:
-  push:
-    branches: [main]
+on: 
+    workflow_call:
 
 jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
+    build-and-push:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Code Checkout
-        uses: actions/checkout@v4
+        steps:
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+            - name: Code Checkout
+              uses: actions/checkout@v4
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ vars.DOCKERHUB_USER }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build and Push Docker Image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: ./Dockerfile
-          push: false
-          tags: |
-            ${{ vars.DOCKERHUB_USER }}/github-action-app:${{ github.ref_name }}
-            ${{ vars.DOCKERHUB_USER }}/github-action-app:latest
-            ${{ vars.DOCKERHUB_USER }}/github-action-app:${{ github.sha }}
+            - name: Login to Docker Hub
+              uses: docker/login-action@v3
+              with:
+                username: ${{ vars.DOCKERHUB_USER }}
+                password: ${{ secrets.DOCKERHUB_TOKEN }}
+                
+            - name: Build & Push to Docker Hub
+              uses: docker/build-push-action@v6
+              with:
+                context: .
+                push: true
+                tags: |
+                    ${{ vars.DOCKERHUB_USER }}/github-actions-app:${{ github.ref_name }}
+                    ${{ vars.DOCKERHUB_USER }}/github-actions-app:latest
+                    ${{ vars.DOCKERHUB_USER }}/github-actions-app:${{ github.sha}}
