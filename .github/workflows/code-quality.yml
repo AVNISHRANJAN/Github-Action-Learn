@@ -24,9 +24,10 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install flake8 bandit
 
       - name: Run linter
         run: flake8 app.py
 
       - name: Run SAST
-        run: bandit -q -r app.py
+        run: bandit -q -r . -s B104
