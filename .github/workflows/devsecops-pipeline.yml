@@ -2,7 +2,8 @@ name: DevSecOps End To End Pipeline
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
 
@@ -22,13 +23,17 @@ jobs:
 
   # Build & Push Docker Image
   build:
-    needs: [code-quality, secrets-scan, dependency-scan, docker-lint]
+    needs:
+      - code-quality
+      - secrets-scan
+      - dependency-scan
+      - docker-lint
     uses: ./.github/workflows/docker-build-push.yml
     secrets: inherit
 
 
   # Image Security Scan
   trivy:
-    needs: [build]
+    needs: build
     uses: ./.github/workflows/image-scan.yml
     secrets: inherit
