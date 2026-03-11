@@ -47,7 +47,7 @@ jobs:
 
             
             export DOCKERHUB_USER=${{ vars.DOCKERHUB_USER }}
-            export DOCKERHUB_TAG=${{ github.sha }}
+            export DOCKER_TAG=${{ github.sha }}
 
             echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ vars.DOCKERHUB_USER }} --password-stdin
 
