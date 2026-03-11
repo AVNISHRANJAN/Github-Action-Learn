@@ -35,5 +35,5 @@ jobs:
   # Image Security Scan
   trivy:
     needs: build
-    uses: ./.github/workflows/image-scan.yml
+    uses: ./.github/workflows/image scan.yml
     secrets: inherit
